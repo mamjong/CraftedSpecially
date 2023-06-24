@@ -1,5 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracerProvider => {
+        tracerProvider
+            .AddSource("Catalog.WebApi")
+            .ConfigureResource(resource => resource
+                .AddService("Catalog.WebApi"))
+            .AddAspNetCoreInstrumentation()
+            .AddConsoleExporter();
+    });
+
 // Add services to the container.
 
 builder.Services.AddControllers();
