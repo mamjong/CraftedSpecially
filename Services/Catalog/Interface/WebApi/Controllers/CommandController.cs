@@ -12,8 +12,15 @@ public class CommandController : ControllerBase
     [HttpPost("registerproduct")]
     public async Task<IActionResult> RegisterProduct(
         [FromBody] RegisterProductCommand command,
-        [FromServices] ICommandHandler<RegisterProductCommand> commandHandler) =>
-            await HandleCommand(command, commandHandler);
+        [FromServices] ICommandHandler<RegisterProductCommand> commandHandler) 
+    {
+        DiagnosticsConfig.RequestCounter.Add(1,
+            new("Action", nameof(RegisterProduct)),
+            new("Controller", nameof(CommandController))
+        );
+        
+        return await HandleCommand(command, commandHandler);
+    }
 
     private async Task<IActionResult> HandleCommand<T>(
         Command command, ICommandHandler<T> commandHandler) where T : Command

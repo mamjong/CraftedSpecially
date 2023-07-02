@@ -1,14 +1,27 @@
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
+using OpenTelemetry.Metrics;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenTelemetry()
     .WithTracing(tracerProvider => {
         tracerProvider
-            .AddSource("Catalog.WebApi")
+            .AddSource(DiagnosticsConfig.ActivitySource.Name)
             .ConfigureResource(resource => resource
-                .AddService("Catalog.WebApi"))
-            .AddAspNetCoreInstrumentation()
+                .AddService(DiagnosticsConfig.ServiceName))
+            // .AddAspNetCoreInstrumentation()
             .AddConsoleExporter();
-    });
+    })
+    .WithMetrics(metricsProviderBuilder =>
+        metricsProviderBuilder
+            .ConfigureResource(resource => resource
+                .AddService(DiagnosticsConfig.ServiceName))
+            .AddMeter(DiagnosticsConfig.Meter.Name)
+            // .AddAspNetCoreInstrumentation()
+            .AddConsoleExporter());
 
 // Add services to the container.
 
@@ -35,3 +48,14 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public static class DiagnosticsConfig
+{
+    public const string ServiceName = "Catalog.WebApi";
+    public static ActivitySource ActivitySource = new ActivitySource(ServiceName);
+
+    public static Meter Meter = new Meter(ServiceName, "1.0.0");
+    public static Counter<long> RequestCounter = 
+        Meter.CreateCounter<long>("app.request_counter");
+}
