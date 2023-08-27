@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidApi", "AndroidApi\AndroidApi.csproj", "{07B79CE9-666B-4399-9CE6-1CA3205CA5A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidApi.Application", "AndroidApi.Application\AndroidApi.Application.csproj", "{DF755476-88C3-4CCE-B788-CC6CC399E85F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidApi.Infrastructure", "AndroidApi.Infrastructure\AndroidApi.Infrastructure.csproj", "{F82B6BE3-1D46-4002-B459-5026372B7BE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{07B79CE9-666B-4399-9CE6-1CA3205CA5A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07B79CE9-666B-4399-9CE6-1CA3205CA5A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07B79CE9-666B-4399-9CE6-1CA3205CA5A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF755476-88C3-4CCE-B788-CC6CC399E85F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF755476-88C3-4CCE-B788-CC6CC399E85F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF755476-88C3-4CCE-B788-CC6CC399E85F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF755476-88C3-4CCE-B788-CC6CC399E85F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F82B6BE3-1D46-4002-B459-5026372B7BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F82B6BE3-1D46-4002-B459-5026372B7BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F82B6BE3-1D46-4002-B459-5026372B7BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F82B6BE3-1D46-4002-B459-5026372B7BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
