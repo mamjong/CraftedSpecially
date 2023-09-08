@@ -6,8 +6,16 @@ services:
       dockerfile: ./Services/AndroidApi/dockerfile
     ports:
       - "8080:8080"
+    env_file:
+      - otel/otel-dotnet.env # Enables OpenTelemetry .NET Automatic Instrumentation
+    environment:
+      # OpenTelemetry environmental variables:
+      OTEL_SERVICE_NAME: "androidapi"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4318"
     networks:
       - my-network
+    depends_on:
+      - otel-collector
 
   catalog:
     build: 
@@ -15,8 +23,16 @@ services:
       dockerfile: ./Services/Catalog/dockerfile
     ports:
       - "8081:8080"
+    env_file:
+      - otel/otel-dotnet.env # Enables OpenTelemetry .NET Automatic Instrumentation
+    environment:
+      # OpenTelemetry environmental variables:
+      OTEL_SERVICE_NAME: "catalog"
+      OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector:4318"
     networks:
       - my-network
+    depends_on:
+      - otel-collector
 
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.78.0
