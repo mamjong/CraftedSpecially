@@ -1,5 +1,7 @@
 # OpenTelemetry
 
+## Description
+
 The project contains an observability stack which is started when running `docker compose up`.
 It consists of the following components:
 - `otel-collector` - [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)
@@ -15,3 +17,25 @@ Grafana is used to visualize the data from all three backends.
 
 Grafana can be accessed at `http://localhost:3000`.
 In the `explore` section you can query the data from the different backends.
+
+## Usage
+
+Windows (Git Bash):
+
+```sh
+docker compose up -d --build
+```
+
+You can [explore](https://grafana.com/docs/grafana/v9.3/explore/)
+the telemetry in [Grafana UI](http://localhost:3000/).
+
+You can also find the exported telemetry in the `log` directory.
+
+## Cleanup
+
+Windows (Git Bash):
+
+```sh
+docker compose down --remove-orphans
+rm -rf log
+```
