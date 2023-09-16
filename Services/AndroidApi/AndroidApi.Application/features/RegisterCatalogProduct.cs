@@ -1,19 +1,18 @@
 using AndroidApi.Application.Services;
-using CraftedSpecially.AndroidApi.Domain;
 
 namespace CraftedSpecially.AndroidApi.Application.Features.SeeProductCatalog;
 
-public class SeeProductCatalog
+public class RegisterCatalogProduct
 {
     private readonly IProductCatalogService productCatalogService;
 
-    public SeeProductCatalog(IProductCatalogService productCatalogService)
+    public RegisterCatalogProduct(IProductCatalogService productCatalogService)
     {
         this.productCatalogService = productCatalogService;
     }
 
-    public Task<IEnumerable<ProductCatalogItem>> GetCatalogProduct()
+    public async Task SendRegistration()
     {
-        return productCatalogService.GetCatalogItems();
+        await productCatalogService.CreateProductCatalogItem();
     }
 }

@@ -4,5 +4,5 @@ namespace AndroidApi.Application.Services;
 
 public interface IProductCatalogService
 {
-    Task<IEnumerable<ProductCatalogItem>> GetCatalogItems();
+    Task CreateProductCatalogItem();
 }

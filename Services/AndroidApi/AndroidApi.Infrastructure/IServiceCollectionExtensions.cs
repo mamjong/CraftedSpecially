@@ -15,7 +15,7 @@ public static class IServiceCollectionExtensions
 
     private static IServiceCollection AddDependencies(this IServiceCollection services) => services
             .AddScoped<IProductCatalogService, ProductCatalogService>()
-            .AddScoped<SeeProductCatalog>();
+            .AddScoped<RegisterCatalogProduct>();
 
     private static IServiceCollection AddAgents(this IServiceCollection services)
     {
