@@ -1,5 +1,10 @@
-public interface ICatalogusApi
+using AndroidApi.Infrastructure.DTOs;
+using Refit;
+
+namespace CraftedSpecially.AndroidApi.Infrastructure.Agents;
+
+internal interface ICatalogusApi
 {
-    [Get("/catalogus")]
-    Task<IEnumerable<CatalogusItem>> GetCatalogusItems();
+    [Post("/productmanagement/command/registerproduct")]
+    Task RegisterNewProduct();
 }

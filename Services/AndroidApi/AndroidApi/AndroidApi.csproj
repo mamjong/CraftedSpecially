@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AndroidApi.Application\AndroidApi.Application.csproj" />
+    <ProjectReference Include="..\AndroidApi.Infrastructure\AndroidApi.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

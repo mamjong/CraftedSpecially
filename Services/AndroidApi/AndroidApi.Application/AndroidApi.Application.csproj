@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AndroidApi.Domain\AndroidApi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
