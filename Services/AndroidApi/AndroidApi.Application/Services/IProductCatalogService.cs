@@ -4,5 +4,5 @@ namespace AndroidApi.Application.Services;
 
 public interface IProductCatalogService
 {
-    Task CreateProductCatalogItem();
+    Task CreateProductCatalogItem(string name, string description);
 }

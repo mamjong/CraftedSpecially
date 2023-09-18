@@ -1,3 +1,4 @@
+using AndroidApi.DTOs;
 using CraftedSpecially.AndroidApi.Application.Features.SeeProductCatalog;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,10 @@ public class CatalogController : ControllerBase
         this.registerCatalogProduct = registerCatalogProduct;
     }
 
-    [HttpGet]
-    public async Task<ActionResult> Get()
+    [HttpPost]
+    public async Task<ActionResult> CreateNewProduct([FromBody] CreateProduct createProduct)
     {
-        await registerCatalogProduct.SendRegistration();
+        await registerCatalogProduct.SendRegistration(createProduct.Name, createProduct.Description);
 
         return Ok();
     }

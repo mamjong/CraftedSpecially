@@ -1,4 +1,5 @@
 ﻿using AndroidApi.Application.Services;
+using AndroidApi.Infrastructure.DTOs;
 using CraftedSpecially.AndroidApi.Infrastructure.Agents;
 
 namespace AndroidApi.Infrastructure.Services
@@ -12,9 +13,14 @@ namespace AndroidApi.Infrastructure.Services
             _catalogusApi = catalogusApi;
         }
 
-        public async Task CreateProductCatalogItem()
+        public async Task CreateProductCatalogItem(string name, string description)
         {
-            await _catalogusApi.RegisterNewProduct();
+            var command = new RegisterProductCommand(
+                name: name,
+                description: description
+            );
+
+            await _catalogusApi.RegisterNewProduct(command);
         }
     }
 }

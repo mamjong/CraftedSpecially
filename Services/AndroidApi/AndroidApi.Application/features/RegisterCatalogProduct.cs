@@ -11,8 +11,8 @@ public class RegisterCatalogProduct
         this.productCatalogService = productCatalogService;
     }
 
-    public async Task SendRegistration()
+    public async Task SendRegistration(string name, string description)
     {
-        await productCatalogService.CreateProductCatalogItem();
+        await productCatalogService.CreateProductCatalogItem(name, description);
     }
 }
