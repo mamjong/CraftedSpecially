@@ -66,5 +66,4 @@ public class Product : AggregateRoot
             AddBusinessRuleViolation($"Product with name \"{name}\" already exists");
         }
     }
-
 }

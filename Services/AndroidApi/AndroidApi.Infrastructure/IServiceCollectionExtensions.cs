@@ -19,6 +19,8 @@ public static class IServiceCollectionExtensions
 
     private static IServiceCollection AddAgents(this IServiceCollection services)
     {
+        Console.WriteLine($"{Environment.GetEnvironmentVariable("CATALOGUS_ADDRESS")}:{Environment.GetEnvironmentVariable("CATALOGUS_PORT")}");
+
         services
             .AddRefitClient<ICatalogusApi>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri($"{Environment.GetEnvironmentVariable("CATALOGUS_ADDRESS")}:{Environment.GetEnvironmentVariable("CATALOGUS_PORT")}"));
