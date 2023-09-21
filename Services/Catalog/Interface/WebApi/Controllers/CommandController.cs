@@ -9,6 +9,13 @@ namespace CraftedSpecially.Catalog.Interface.WebApi.Controllers;
 [Route("productmanagement/command")]
 public class CommandController : ControllerBase
 {
+    private readonly ILogger<CommandController> _logger;
+
+    public CommandController(ILogger<CommandController> logger)
+    {
+        _logger = logger;
+    }
+
     [HttpPost("registerproduct")]
     public async Task<IActionResult> RegisterProduct(
         [FromBody] RegisterProductCommand command,
@@ -18,6 +25,7 @@ public class CommandController : ControllerBase
     private async Task<IActionResult> HandleCommand<T>(
         Command command, ICommandHandler<T> commandHandler) where T : Command
     {
+        _logger.LogInformation("Handling command {Command}", command.Type);
         await commandHandler.Handle((T)command);
         return Ok();
     }
