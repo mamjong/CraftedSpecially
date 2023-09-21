@@ -15,9 +15,12 @@ public sealed class Instrumentation : IDisposable
         var version = typeof(Instrumentation).Assembly.GetName().Version?.ToString() ?? "Unknown";
         ActivitySource = new ActivitySource(ActivitySourceName, version);
         _meter = new Meter(MeterName, version);
+        CatalogRegisterRequestCounter = _meter.CreateCounter<long>("catalog_register_requests");
     }
 
     public ActivitySource ActivitySource { get; }
+    
+    public Counter<long> CatalogRegisterRequestCounter { get; }
 
     public void Dispose()
     {
