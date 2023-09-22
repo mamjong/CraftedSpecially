@@ -2,7 +2,6 @@ using CraftedSpecially.Application.Common.Interfaces;
 using CraftedSpecially.Catalog.Domain.Aggregates.ProductAggregate.Commands;
 using CraftedSpecially.Domain.Common;
 using Microsoft.AspNetCore.Mvc;
-using WebApi;
 
 namespace CraftedSpecially.Catalog.Interface.WebApi.Controllers;
 

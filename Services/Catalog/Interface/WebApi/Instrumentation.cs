@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace WebApi;
+namespace CraftedSpecially.Catalog.Interface.WebApi;
 
 public sealed class Instrumentation : IDisposable
 {

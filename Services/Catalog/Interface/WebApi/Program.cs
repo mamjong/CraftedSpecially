@@ -1,10 +1,10 @@
+using CraftedSpecially.Catalog.Interface.WebApi;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Instrumentation.AspNetCore;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

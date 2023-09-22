@@ -27,12 +27,12 @@ processors:
         {
           name: latency_policy,
           type: latency,
-          latency: {threshold_ms: 1000}
+          latency: { threshold_ms: 1000 },
         },
         {
           name: status_code_policy,
           type: status_code,
-          status_code: {status_codes: [ERROR, UNSET]}
+          status_code: { status_codes: [ERROR] },
         }
       ]
 
@@ -64,7 +64,7 @@ service:
         - zipkin
       processors: [tail_sampling]
       exporters:
-        - logging 
+        - logging
         - file/traces
         - otlp
     metrics:
@@ -72,7 +72,7 @@ service:
         - otlp
       processors: [batch]
       exporters:
-        - logging 
+        - logging
         - file/metrics
         - prometheus
     logs:
@@ -80,7 +80,7 @@ service:
         - otlp
       processors: [batch]
       exporters:
-        - logging 
+        - logging
         - file/logs
         - loki
   extensions:
