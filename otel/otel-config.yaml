@@ -11,7 +11,30 @@ receivers:
   zipkin:
 
 processors:
+  # Sample everything
   batch:
+  # Probabilistic sampling
+  # See: https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/processor/probabilisticsamplerprocessor/testdata/config.yaml
+  probabilistic_sampler:
+    hash_seed: 22
+    sampling_percentage: 25
+  # Tail sampling
+  # See: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/tailsamplingprocessor
+  tail_sampling:
+    num_traces: 1000
+    policies:
+      [
+        {
+          name: latency_policy,
+          type: latency,
+          latency: {threshold_ms: 1000}
+        },
+        {
+          name: status_code_policy,
+          type: status_code,
+          status_code: {status_codes: [ERROR, UNSET]}
+        }
+      ]
 
 exporters:
   logging:
@@ -39,7 +62,7 @@ service:
       receivers:
         - otlp
         - zipkin
-      processors: [batch]
+      processors: [tail_sampling]
       exporters:
         - logging 
         - file/traces
