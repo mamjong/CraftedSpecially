@@ -5,6 +5,7 @@ using CraftedSpecially.Catalog.Domain.Aggregates.ProductAggregate;
 using CraftedSpecially.Catalog.Domain.Aggregates.ProductAggregate.Commands;
 using CraftedSpecially.Catalog.Application.Interfaces;
 using CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,17 @@ public static class IServiceCollectionExtensions
     )
     {
         return services
+            .AddDatabase()
             .AddDependencies();
+    }
+
+    private static IServiceCollection AddDatabase(this IServiceCollection services)
+    {
+        return services
+            .AddDbContext<CatalogDbContext>(options =>
+            {
+                options.UseMySQL("server=mysql;database=db;user=user;password=password");
+            });
     }
 
     private static IServiceCollection AddDependencies(this IServiceCollection services)

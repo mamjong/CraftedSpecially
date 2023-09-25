@@ -5,5 +5,5 @@ namespace CraftedSpecially.Catalog.Application.Interfaces;
 public interface IProductRepository
 {
     ValueTask AddAsync(Product product);
-    ValueTask<Product> GetProductByName(string productName);
+    ValueTask<bool> IsExistingProductAsync(string productName);
 }

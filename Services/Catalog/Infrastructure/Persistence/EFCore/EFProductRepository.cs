@@ -1,18 +1,29 @@
 using CraftedSpecially.Catalog.Application.Interfaces;
 using CraftedSpecially.Catalog.Domain.Aggregates.ProductAggregate;
+using Microsoft.EntityFrameworkCore;
 
 namespace CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore
 {
     public class EFProductRepository : IProductRepository
     {
-        public ValueTask AddAsync(Product product)
+        private readonly CatalogDbContext _dbContext;
+
+        public EFProductRepository(CatalogDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
         }
 
-        public ValueTask<Product> GetProductByName(string productName)
+        public async ValueTask AddAsync(Product product)
         {
-            throw new NotImplementedException();
+            var productDto = new ProductDto();
+
+            await _dbContext.Products.AddAsync(productDto);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async ValueTask<bool> IsExistingProductAsync(string productName)
+        {
+            return await _dbContext.Products.AnyAsync(p => p.Name == productName);
         }
     }
 }

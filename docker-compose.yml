@@ -25,6 +25,16 @@ services:
     depends_on:
       - otel-collector
 
+  mysql:
+    image: mysql:8.0.26
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    networks:
+      - my-network
+
   otel-collector:
     image: otel/opentelemetry-collector-contrib:0.78.0
     volumes:

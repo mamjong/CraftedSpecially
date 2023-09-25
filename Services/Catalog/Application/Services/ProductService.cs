@@ -14,6 +14,6 @@ public class ProductService : IProductService
 
     public async ValueTask<bool> IsExistingProductAsync(string ProductName)
     {
-        return await _productRepository.GetProductByName(ProductName) != null;
+        return await _productRepository.IsExistingProductAsync(ProductName);
     }
 }
