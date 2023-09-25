@@ -1,4 +1,6 @@
+using CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore;
 using CraftedSpecially.Catalog.Interface.WebApi;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +20,9 @@ builder.AddOpenTelemetry();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-// }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
