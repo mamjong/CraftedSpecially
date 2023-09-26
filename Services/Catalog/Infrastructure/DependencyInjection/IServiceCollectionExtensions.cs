@@ -22,11 +22,13 @@ public static class IServiceCollectionExtensions
 
     private static IServiceCollection AddDatabase(this IServiceCollection services)
     {
-        return services
+        services
             .AddDbContext<CatalogDbContext>(options =>
             {
                 options.UseMySQL("server=mysql;database=db;user=user;password=password");
             });
+
+        return services;
     }
 
     private static IServiceCollection AddDependencies(this IServiceCollection services)

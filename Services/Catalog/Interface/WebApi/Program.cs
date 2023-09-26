@@ -1,6 +1,8 @@
 using CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore;
 using CraftedSpecially.Catalog.Interface.WebApi;
+using CraftedSpecially.Domain.Common;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,17 +21,21 @@ builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
-var dbContext = app.Services.GetRequiredService<CatalogDbContext>();
+var serviceScope = app.Services.CreateScope();
+
+using (var scope = serviceScope)
+{
+    var handler = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+    handler.Database.Migrate();
+    handler.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

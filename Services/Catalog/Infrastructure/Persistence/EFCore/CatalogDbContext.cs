@@ -8,7 +8,7 @@ namespace CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore
         {
         }
 
-        internal DbSet<ProductDto> Products { get; set; } = default!;
+        public DbSet<ProductDto> Products { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
