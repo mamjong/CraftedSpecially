@@ -19,6 +19,8 @@ builder.AddOpenTelemetry();
 
 var app = builder.Build();
 
+var dbContext = app.Services.GetRequiredService<CatalogDbContext>();
+
 // Configure the HTTP request pipeline.
 
 app.UseSwagger();
