@@ -24,6 +24,8 @@ services:
       - my-network
     depends_on:
       - otel-collector
+      - mysql
+    restart: on-failure
 
   mysql:
     image: mysql:8.0.26

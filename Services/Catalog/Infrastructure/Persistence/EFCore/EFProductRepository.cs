@@ -15,7 +15,9 @@ namespace CraftedSpecially.Catalog.Infrastructure.Persistence.EFCore
 
         public async ValueTask AddAsync(Product product)
         {
-            var productDto = new ProductDto();
+            var productDto = new ProductDto {
+                Name = product.Name
+            };
 
             await _dbContext.Products.AddAsync(productDto);
             await _dbContext.SaveChangesAsync();
