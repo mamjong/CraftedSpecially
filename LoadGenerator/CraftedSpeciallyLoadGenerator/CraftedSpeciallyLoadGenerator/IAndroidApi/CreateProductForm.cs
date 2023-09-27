@@ -5,11 +5,11 @@ public class CreateProductForm
     public string Name { get; set; }
     public string Description { get; set; }
 
-    public static CreateProductForm Create()
+    public static CreateProductForm Create(bool slow = false)
     {
         return new CreateProductForm
         {
-            Name = Guid.NewGuid().ToString(),
+            Name = slow ? "slow" + Guid.NewGuid() : Guid.NewGuid().ToString(),
             Description = Guid.NewGuid().ToString()
         };
     }

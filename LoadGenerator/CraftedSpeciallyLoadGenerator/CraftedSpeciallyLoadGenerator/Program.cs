@@ -14,20 +14,38 @@ Console.CancelKeyPress += (_, args) =>
 };
 
 var androidApiClient = RestService.For<IAndroidApi>("http://localhost:8080");
+var random = new Random();
 
 while (!cancellationTokenSource.IsCancellationRequested)
 {
-    var sendFaultyRequest = new Random().Next(100) < 10;
+    var sendFaultyRequest = random.Next(100) < 10;
 
-    if (sendFaultyRequest)
+    try
     {
-        Console.WriteLine("Sending faulty request...");
-        await androidApiClient.CreateNewProductAsync(CreateProductForm.Faulty());
+        if (sendFaultyRequest)
+        {
+            Console.WriteLine("Sending faulty request...");
+            await androidApiClient.CreateNewProductAsync(CreateProductForm.Faulty());
+        }
+        else
+        {
+            var sendSlowRequest = random.Next(100) < 25;
+
+            if (sendSlowRequest)
+            {
+                Console.WriteLine("Sending slow request...");
+                await androidApiClient.CreateNewProductAsync(CreateProductForm.Create(slow: true));
+            }
+            else
+            {
+                Console.WriteLine("Sending request...");
+                await androidApiClient.CreateNewProductAsync(CreateProductForm.Create());
+            }
+        }
     }
-    else
+    catch (HttpRequestException)
     {
-        Console.WriteLine("Sending request...");
-        await androidApiClient.CreateNewProductAsync(CreateProductForm.Create());
+        Console.WriteLine("Failed sending request.");
     }
 
     await Task.Delay(500);

@@ -1,4 +1,5 @@
 using CraftedSpecially.Application.Common.Interfaces;
+using CraftedSpecially.Catalog.Application;
 using CraftedSpecially.Catalog.Domain.Aggregates.ProductAggregate.Commands;
 using CraftedSpecially.Domain.Common;
 using Microsoft.AspNetCore.Mvc;

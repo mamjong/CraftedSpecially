@@ -1,4 +1,5 @@
-﻿using OpenTelemetry.Exporter;
+﻿using CraftedSpecially.Catalog.Application;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Instrumentation.AspNetCore;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
@@ -49,6 +50,7 @@ public static class WebApplicationBuilderExtensions
                     .AddSource(Instrumentation.ActivitySourceName)
                     .SetSampler<AlwaysOnSampler>()
                     .AddAspNetCoreInstrumentation()
+                    .AddEntityFrameworkCoreInstrumentation()
                     .AddOtlpExporter(configureOtlpExporter);
             })
             .WithMetrics(metricsBuilder =>
