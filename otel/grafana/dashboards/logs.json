@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -62,7 +62,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -417,12 +417,12 @@
             "uid": "loki"
           },
           "editorMode": "builder",
-          "expr": "{exporter=\"OTLP\"} |= ``",
+          "expr": "{exporter=\"OTLP\", level=\"ERROR\"} |= ``",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Logs",
+      "title": "Error Logs",
       "transformations": [
         {
           "id": "extractFields",
@@ -464,7 +464,7 @@
     "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
