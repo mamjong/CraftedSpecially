@@ -62,7 +62,8 @@ service:
       receivers:
         - otlp
         - zipkin
-      processors: [tail_sampling]
+      # To enable sampling, replace the `batch` processor with one of the defined sampling processors (i.e. `probabilistic_sampler` or `tail_sampling`).
+      processors: [batch]
       exporters:
         - logging
         - file/traces
